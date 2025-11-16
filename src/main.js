@@ -1,3 +1,5 @@
+import './style.css';
+
 const postsContainer = document.getElementById("posts");
 const modal = document.getElementById("modal");
 const modalTitle = document.getElementById("modal-title");
