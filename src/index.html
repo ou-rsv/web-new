@@ -4,70 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Мой блог - Личный дневник</title>
-    <!-- Убраны ссылки на CSS и JS - Webpack добавит автоматически -->
+    <!-- Webpack добавит стили и скрипты автоматически -->
 </head>
 <body>
-<header class="navbar-container">
-    <div class="nav-content">
-        <h1>📝 Мой блог</h1>
-        <div class="nav-controls">
-            <button id="themeToggle" class="theme-btn">
-                <span class="theme-icon">🌙</span>
-                <span class="theme-text">Темная тема</span>
-            </button>
-            <button id="addPostBtn" class="add-post-btn">+ Новый пост</button>
-        </div>
-    </div>
-</header>
-
-<main id="posts">
-    <!-- Посты будут генерироваться через JS -->
-</main>
-
-<!-- Модальное окно для просмотра поста -->
-<div class="modal" id="modal">
-    <div class="modal-content">
-        <span class="close-btn" id="closeModal">&times;</span>
-        <h2 id="modal-title"></h2>
-        <div class="modal-meta">
-            <span id="modal-date"></span>
-            <span id="modal-tags"></span>
-        </div>
-        <p id="modal-text"></p>
-        <div class="modal-actions">
-            <button id="deletePost" class="delete-btn">🗑️ Удалить пост</button>
-        </div>
-    </div>
-</div>
-
-<!-- Модальное окно для создания нового поста -->
-<div class="modal" id="addPostModal">
-    <div class="modal-content">
-        <span class="close-btn" id="closeAddModal">&times;</span>
-        <h2>Создать новый пост</h2>
-        <form id="postForm">
-            <div class="form-group">
-                <label for="postTitle">Заголовок:</label>
-                <input type="text" id="postTitle" required maxlength="100" placeholder="Введите заголовок поста">
-            </div>
-            <div class="form-group">
-                <label for="postText">Текст:</label>
-                <textarea id="postText" rows="6" required maxlength="1000" placeholder="Напишите содержание поста..."></textarea>
-            </div>
-            <div class="form-group">
-                <label for="postTags">Теги (через запятую):</label>
-                <input type="text" id="postTags" placeholder="путешествия, отдых, природа">
-            </div>
-            <div class="form-actions">
-                <button type="button" id="cancelPost">Отмена</button>
-                <button type="submit">Опубликовать</button>
-            </div>
-        </form>
-    </div>
-</div>
-
-<footer class="footer">
-    <p>&copy; 2025 Мой блог</p>
-</footer>
+    <div id="root"></div>
 </body>
 </html>
