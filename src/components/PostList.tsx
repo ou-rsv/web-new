@@ -1,8 +1,21 @@
 import React from 'react';
 
-function PostList({ posts, onPostClick }) {
-  const formatDate = (dateString) => {
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+interface Post {
+  id: number;
+  title: string;
+  text: string;
+  tags: string[];
+  date: string;
+}
+
+interface PostListProps {
+  posts: Post[];
+  onPostClick: (post: Post) => void;
+}
+
+const PostList: React.FC<PostListProps> = ({ posts, onPostClick }) => {
+  const formatDate = (dateString: string): string => {
+    const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(dateString).toLocaleDateString('ru-RU', options);
   };
 
@@ -39,6 +52,6 @@ function PostList({ posts, onPostClick }) {
       ))}
     </div>
   );
-}
+};
 
 export default PostList;

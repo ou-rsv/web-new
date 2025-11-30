@@ -4,15 +4,30 @@ import PostList from './components/PostList';
 import PostModal from './components/PostModal';
 import AddPostModal from './components/AddPostModal';
 
+// Типы для данных
+interface Post {
+  id: number;
+  title: string;
+  text: string;
+  tags: string[];
+  date: string;
+}
+
+interface PostFormData {
+  title: string;
+  text: string;
+  tags: string;
+}
+
 function App() {
-  const [posts, setPosts] = useState([]);
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
-  const [selectedPost, setSelectedPost] = useState(null);
-  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [isDarkTheme, setIsDarkTheme] = useState<boolean>(false);
+  const [selectedPost, setSelectedPost] = useState<Post | null>(null);
+  const [isAddModalOpen, setIsAddModalOpen] = useState<boolean>(false);
 
   // Загрузка данных из localStorage
   useEffect(() => {
-    const savedPosts = JSON.parse(localStorage.getItem('blogPosts')) || [];
+    const savedPosts = JSON.parse(localStorage.getItem('blogPosts') || '[]');
     setPosts(savedPosts);
     
     const savedTheme = localStorage.getItem('theme');
@@ -32,13 +47,13 @@ function App() {
     localStorage.setItem('theme', isDarkTheme ? 'dark' : 'light');
   }, [isDarkTheme]);
 
-  const toggleTheme = () => {
+  const toggleTheme = (): void => {
     setIsDarkTheme(!isDarkTheme);
     document.body.classList.toggle('dark');
   };
 
-  const addPost = (postData) => {
-    const newPost = {
+  const addPost = (postData: PostFormData): void => {
+    const newPost: Post = {
       id: Date.now(),
       title: postData.title,
       text: postData.text,
@@ -49,7 +64,7 @@ function App() {
     setIsAddModalOpen(false);
   };
 
-  const deletePost = (postId) => {
+  const deletePost = (postId: number): void => {
     if (window.confirm('Вы уверены, что хотите удалить этот пост?')) {
       setPosts(posts.filter(post => post.id !== postId));
       setSelectedPost(null);
