@@ -1,13 +1,24 @@
 import React, { useState } from 'react';
 
-function AddPostModal({ onClose, onAddPost }) {
-  const [formData, setFormData] = useState({
+interface PostFormData {
+  title: string;
+  text: string;
+  tags: string;
+}
+
+interface AddPostModalProps {
+  onClose: () => void;
+  onAddPost: (postData: PostFormData) => void;
+}
+
+const AddPostModal: React.FC<AddPostModalProps> = ({ onClose, onAddPost }) => {
+  const [formData, setFormData] = useState<PostFormData>({
     title: '',
     text: '',
     tags: ''
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent): void => {
     e.preventDefault();
     if (formData.title && formData.text) {
       onAddPost(formData);
@@ -15,7 +26,7 @@ function AddPostModal({ onClose, onAddPost }) {
     }
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
@@ -37,7 +48,7 @@ function AddPostModal({ onClose, onAddPost }) {
               value={formData.title}
               onChange={handleChange}
               required 
-              maxLength="100" 
+              maxLength={100} 
               placeholder="Введите заголовок поста"
             />
           </div>
@@ -48,9 +59,9 @@ function AddPostModal({ onClose, onAddPost }) {
               name="text"
               value={formData.text}
               onChange={handleChange}
-              rows="6" 
+              rows={6} 
               required 
-              maxLength="1000" 
+              maxLength={1000} 
               placeholder="Напишите содержание поста..."
             />
           </div>
@@ -77,6 +88,6 @@ function AddPostModal({ onClose, onAddPost }) {
       </div>
     </div>
   );
-}
+};
 
 export default AddPostModal;

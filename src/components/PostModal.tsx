@@ -1,8 +1,22 @@
 import React from 'react';
 
-function PostModal({ post, onClose, onDelete }) {
-  const formatDate = (dateString) => {
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+interface Post {
+  id: number;
+  title: string;
+  text: string;
+  tags: string[];
+  date: string;
+}
+
+interface PostModalProps {
+  post: Post;
+  onClose: () => void;
+  onDelete: (postId: number) => void;
+}
+
+const PostModal: React.FC<PostModalProps> = ({ post, onClose, onDelete }) => {
+  const formatDate = (dateString: string): string => {
+    const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(dateString).toLocaleDateString('ru-RU', options);
   };
 
@@ -28,6 +42,6 @@ function PostModal({ post, onClose, onDelete }) {
       </div>
     </div>
   );
-}
+};
 
 export default PostModal;

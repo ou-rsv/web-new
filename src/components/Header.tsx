@@ -1,6 +1,12 @@
 import React from 'react';
 
-function Header({ isDarkTheme, onToggleTheme, onAddPost }) {
+interface HeaderProps {
+  isDarkTheme: boolean;
+  onToggleTheme: () => void;
+  onAddPost: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ isDarkTheme, onToggleTheme, onAddPost }) => {
   return (
     <header className="navbar-container">
       <div className="nav-content">
@@ -19,6 +25,6 @@ function Header({ isDarkTheme, onToggleTheme, onAddPost }) {
       </div>
     </header>
   );
-}
+};
 
 export default Header;

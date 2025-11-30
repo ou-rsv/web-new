@@ -5,3 +5,6 @@
 
 ## добавил webpack и react 
 
+**3**
+
+## добавил type script
